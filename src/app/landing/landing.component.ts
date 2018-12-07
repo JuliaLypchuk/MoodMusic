@@ -12,10 +12,10 @@ export class LandingComponent implements OnInit {
   trustedURL: any;
 
   filters: any = [
-    'f1',
-    'f2',
-    'f3',
-    'f4',
+    'danceability',
+    'acousticness',
+    'instrumentalness',
+    'loudness'
   ];
 
   constructor(public sanitizer: DomSanitizer) {
