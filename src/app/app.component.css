@@ -1,44 +1,11 @@
-.bg-img {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-
-  background: url("../assets/design1.png");
-
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-
-  opacity: 1;
-  z-index: -100;
+* {
+  box-sizing: border-box;
+}
+textarea:hover, textarea:active {
+  outline: none;
 }
 
 
-.main-text-input {
-  width: 70%;
-  margin: auto;
-  margin-top: 220px;
-  height: 50px;
-}
-main {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  text-transform: uppercase;
-  font-size: 48px;
-  font-weight: bold;
-  height: 60vh;
-}
-
-.filter-group {
-  height: 100%;
-  display: flex;
-  justify-content: space-around;
-  flex-direction: column;
-  width: 40%;
-  margin: 0 100px;
-
+*:focus {
+  outline: 0;
 }
