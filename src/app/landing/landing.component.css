@@ -38,16 +38,17 @@ form {
   width: 80%;
   margin: auto;
   margin-top: 160px;
+  display: flex;
 }
 .main-text-input {
-  width: 80%;
+  width: 100%;
   padding: 10px 30px 10px 120px;
   border-radius: 60px;
   font-size: 18px;
 }
 .input-img {
   position: absolute;
-  top: 5px;
+  top: 4px;
   left: 40px;
 }
 main {
@@ -68,7 +69,7 @@ main {
   align-items: center;
   flex-direction: column;
   width: 40%;
-  margin: 0 100px;
+  margin: 0 70px;
 }
 .filter {
   width: 100%;
@@ -83,7 +84,7 @@ main {
   height: 10px; /* Specified height */
   background: white; /* Grey background */
   outline: none; /* Remove outline */
-  opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+  opacity: 0.8; /* Set transparency (for mouse-over effects on hover) */
   -webkit-transition: .2s; /* 0.2 seconds transition on hover */
   transition: opacity .2s;
   border-radius: 30px;
