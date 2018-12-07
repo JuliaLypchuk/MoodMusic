@@ -17,9 +17,7 @@ textarea:focus, input:focus{
   bottom: 0;
   left: 0;
   right: 0;
-
   background: url("../../assets/background.png");
-
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -60,6 +58,11 @@ main {
   font-size: 36px;
   font-weight: bold;
   height: 60vh;
+}
+.main-text {
+  width: 30%;
+  text-align: center;
+  text-shadow: 3px 2px 5px rgba(255, 255, 255, 0.5);
 }
 
 .filter-group {
@@ -118,7 +121,9 @@ main {
   margin: 30px auto;
   height: 60px;
   border-radius: 30px;
+  border: none;
   position:relative;
+  box-shadow: 3px 3px 6px rgba(255, 255, 255, 0.5);
 }
 .search-text {
   font-size: 20px;
