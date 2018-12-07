@@ -145,5 +145,5 @@ main {
   align-items: center;
   justify-content: space-around;
   flex-direction: column;
-  margin: 0 100px;
+  margin: 10px;
 }
