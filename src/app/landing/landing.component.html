@@ -1,6 +1,9 @@
-<form>
+<form [formGroup]="moodParamsForm">
   <div class="input-area">
-    <textarea rows="3" class="main-text-input" placeholder="Start typing..."></textarea>
+    <textarea rows="3"
+              class="main-text-input"
+              placeholder="Start typing..."
+              formControlName="text"></textarea>
     <img class="input-img" src="../../assets/Elf.png">
   </div>
   <main>
@@ -8,8 +11,39 @@
     <div class="filter-group">
       <div class="filter" *ngFor="let filter of filters">
         <label class="filter-label">{{filter}}</label>
-        <input type="range" min="0" max="100" step="1" value="50" class="slider" >
+        <input type="range"
+               min="0" max="100"
+               step="1" value="50"
+               class="slider"
+               formControlName="{{filter}}">
       </div>
+
+      <!--<div class="filter">
+        <label class="filter-label">{{filters[1]}}</label>
+        <input type="range"
+               min="0" max="100"
+               step="1" value="50"
+               class="slider"
+               formControlName="acousticness">
+      </div>
+
+      <div class="filter">
+        <label class="filter-label">{{filters[2]}}</label>
+        <input type="range"
+               min="0" max="100"
+               step="1" value="50"
+               class="slider"
+               formControlName="instrumentalness">
+      </div>
+
+      <div class="filter">
+        <label class="filter-label">{{filters[3]}}</label>
+        <input type="range"
+               min="0" max="100"
+               step="1" value="50"
+               class="slider"
+               formControlName="loudness">
+      </div>-->
     </div>
     <div class="main-text">and be
       <ul class="content-list">

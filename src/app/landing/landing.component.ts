@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import {getBodyNode} from '@angular/animations/browser/src/render/shared';
 import {withIdentifier} from 'codelyzer/util/astQuery';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { MoodParamsModel } from '../models/mood-params.model';
 
@@ -19,7 +20,7 @@ export class LandingComponent implements OnInit {
   filters: any;
   moodParams: MoodParamsModel;
 
-  f1 = new FormControl(''); // TODO finish
+  moodParamsForm: FormGroup; // TODO finish
 
   leftText: string;
 
@@ -31,7 +32,7 @@ export class LandingComponent implements OnInit {
   ];
   emotion = 'happy';
 
-  constructor(public sanitizer: DomSanitizer) {
+  constructor(public sanitizer: DomSanitizer, private http: HttpClient) {
 
     this.moodParams = new MoodParamsModel();
 
@@ -60,20 +61,37 @@ export class LandingComponent implements OnInit {
   }
 
   initForm() {
-// TODO finish
+    this.moodParamsForm = new FormGroup({
+      text: new FormControl('', Validators.required),
+      danceability: new FormControl(''),
+      acousticness: new FormControl(''),
+      instrumentalness: new FormControl(''),
+      loudness: new FormControl(''),
+    });
   }
 
   prepareData() {
+    this.http.post('https://demo-mood-music.herokuapp.com/', this.moodParams)
+        .subscribe((res) => {
+          if ( res ) {
+            console.log(res);
+          }
+        }, error => {
+          alert(error);
+        });
 
   }
 
   onSubmit(data: any) {
     document.getElementById('divider').style.opacity = '1';
-   const emotionEls = document.querySelectorAll('app-emotion');
-   console.log(emotionEls);
-   Array.from(emotionEls).forEach(el => el.classList.add('visible'));
-   window.scrollTo({ top: document.body.offsetHeight,
-                      behavior: 'smooth' });
-    console.log(data);
+    const emotionEls = document.querySelectorAll('app-emotion');
+    Array.from(emotionEls).forEach(el => el.classList.add('visible'));
+
+    window.scrollTo({
+      top: document.body.offsetHeight,
+      behavior: 'smooth'
+    });
+
+    this.prepareData();
   }
 }
