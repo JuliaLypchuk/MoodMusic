@@ -16,6 +16,7 @@ export class LandingComponent implements OnInit {
 
   spotifyLink = {};
   trustedURLs: any[] = [];
+  spinner: boolean = false;
 
   filters: any;
   moodParams: MoodParamsModel;
@@ -88,28 +89,34 @@ export class LandingComponent implements OnInit {
     });
 
     this.prepareData(this.moodParamsForm.value);
+    console.log(this.moodParamsForm.value);
     this.sendRequest();
   }
 
   sendRequest() {
+    this.spinner = true;
     this.http.post('https://demo-mood-music.herokuapp.com/', this.moodParams)
         .subscribe((res) => {
           if ( res ) {
             this.setResponseData(res);
+            this.spinner = false;
           }
         }, error => {
+          console.log(error);
           alert(error);
+          this.spinner = false;
         });
   }
 
   setResponseData(res: any) {
     this.responseData = res;
-    this.emotion = this.responseData.mood.toLowerCase().replace(/ .+/,'');
+    this.emotion = this.responseData.mood.toLowerCase()
+                       .replace(/ .+/, '');
 
-    setTimeout( () => {
+    setTimeout(() => {
       const emotionEls = document.querySelectorAll('app-emotion');
       Array.from(emotionEls)
-        .forEach(el => el.classList.add('visible'));
+           .forEach(el => el.classList.add('visible'));
     }, 1);
     this.responseData.tracks.forEach((track) => {
       this.getSpotifyLink(track);
@@ -120,8 +127,8 @@ export class LandingComponent implements OnInit {
     const link: string = track.external_urls.spotify;
     if ( link ) {
       const index = link.indexOf('track');
-      const link1  = link.slice(0, index);
-      const link2  = link.slice(index, link.length);
+      const link1 = link.slice(0, index);
+      const link2 = link.slice(index, link.length);
       const transformedLink = link1 + 'embed/' + link2;
       this.trustedURLs.push(this.sanitizer.bypassSecurityTrustResourceUrl(transformedLink));
     } else {
