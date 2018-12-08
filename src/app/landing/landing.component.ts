@@ -4,6 +4,8 @@ import { FormControl } from '@angular/forms';
 import {getBodyNode} from '@angular/animations/browser/src/render/shared';
 import {withIdentifier} from 'codelyzer/util/astQuery';
 
+import { MoodParamsModel } from '../models/mood-params.model';
+
 @Component({
   selector: 'app-landing',
   templateUrl: './landing.component.html',
@@ -14,16 +16,13 @@ export class LandingComponent implements OnInit {
   spotifyLink: string = '';
   trustedURLs: any[] = [];
 
-  filters: any = [
-    'danceability',
-    'acousticness',
-    'instrumentalness',
-    'loudness'
-  ];
+  filters: any;
+  moodParams: MoodParamsModel;
 
   f1 = new FormControl(''); // TODO finish
 
   leftText: string;
+
   moods: any = [
     'happy',
     'peaceful',
@@ -31,12 +30,21 @@ export class LandingComponent implements OnInit {
     'calm'
   ];
 
-
   constructor(public sanitizer: DomSanitizer) {
+
+    this.moodParams = new MoodParamsModel();
+
+    this.filters = [
+      'danceability',
+      'acousticness',
+      'instrumentalness',
+      'loudness'
+    ];
+
+    this.leftText = 'find your music';
   }
 
   ngOnInit() {
-    this.leftText = 'find your music';
     this.getSpotifyLink();
     this.initForm();
   }
@@ -52,6 +60,10 @@ export class LandingComponent implements OnInit {
 
   initForm() {
 // TODO finish
+  }
+
+  prepareData() {
+
   }
 
   onSubmit(data: any) {

@@ -6,18 +6,15 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./emotion.component.css']
 })
 
-
-
 export class EmotionComponent implements OnInit {
-
 
   @Input() emotion: string;
   imgEmotion: string;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
     this.imgEmotion = '../../assets/' + this.emotion + '.png';
   }
-
 }
