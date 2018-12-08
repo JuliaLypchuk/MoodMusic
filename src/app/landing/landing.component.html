@@ -31,8 +31,8 @@
     <span class="search-text">Search</span>
     <img src="/assets/Santa.png" class="search-img">
   </button>
-  <app-emotion class="container-emotion-1" [emotion]="emotion"></app-emotion>
-  <app-emotion class="container-emotion-2" [emotion]="emotion"></app-emotion>
+  <app-emotion *ngIf="emotion" class="container-emotion-1" [emotion]="emotion"></app-emotion>
+  <app-emotion *ngIf="emotion" class="container-emotion-2" [emotion]="emotion"></app-emotion>
 </form>
 <div id="divider"></div>
 <div class="result-container">

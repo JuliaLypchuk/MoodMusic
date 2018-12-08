@@ -81,9 +81,6 @@ export class LandingComponent implements OnInit {
 
   onSubmit(data: any) {
     document.getElementById('divider').style.opacity = '1';
-    const emotionEls = document.querySelectorAll('app-emotion');
-    Array.from(emotionEls)
-         .forEach(el => el.classList.add('visible'));
 
     window.scrollTo({
       top: document.body.offsetHeight,
@@ -108,6 +105,12 @@ export class LandingComponent implements OnInit {
   setResponseData(res: any) {
     this.responseData = res;
     this.emotion = this.responseData.mood.toLowerCase().replace(/ .+/,'');
+
+    setTimeout( () => {
+      const emotionEls = document.querySelectorAll('app-emotion');
+      Array.from(emotionEls)
+        .forEach(el => el.classList.add('visible'));
+    }, 1);
     this.responseData.tracks.forEach((track) => {
       this.getSpotifyLink(track);
     });
@@ -115,7 +118,6 @@ export class LandingComponent implements OnInit {
 
   getSpotifyLink(track) {
     const link: string = track.external_urls.spotify;
-    console.log(link);
     if ( link ) {
       this.trustedURLs.push(this.sanitizer.bypassSecurityTrustResourceUrl(link));
     } else {
