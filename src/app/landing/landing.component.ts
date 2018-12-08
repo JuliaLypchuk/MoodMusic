@@ -83,11 +83,6 @@ export class LandingComponent implements OnInit {
   onSubmit(data: any) {
     document.getElementById('divider').style.opacity = '1';
 
-    window.scrollTo({
-      top: document.body.offsetHeight,
-      behavior: 'smooth'
-    });
-
     this.prepareData(this.moodParamsForm.value);
     console.log(this.moodParamsForm.value);
     this.sendRequest();
@@ -101,6 +96,12 @@ export class LandingComponent implements OnInit {
           if ( res ) {
             this.setResponseData(res);
             this.spinner = false;
+
+            window.scrollTo({
+              top: document.body.offsetHeight,
+              behavior: 'smooth'
+            });
+
           }
         }, error => {
           console.log(error);
