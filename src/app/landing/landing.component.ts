@@ -32,7 +32,7 @@ export class LandingComponent implements OnInit {
     'relaxing',
     'calm'
   ];
-  emotion = 'happy';
+  emotion: string;
 
   lorenIpsum: string;
 
@@ -99,8 +99,10 @@ export class LandingComponent implements OnInit {
   sendRequest() {
     this.http.post('https://demo-mood-music.herokuapp.com/', this.moodParams)
         .subscribe((res) => {
+          console.log(res);
           if ( res ) {
             this.responseData = res;
+            this.emotion = this.responseData.mood.toLowerCase().replace(/ .+/,'');
             console.log(res);
           }
         }, error => {
