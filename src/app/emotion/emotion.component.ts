@@ -13,14 +13,11 @@ export class EmotionComponent implements OnInit {
 
   @Input() emotion: string;
   imgEmotion: string;
-  emotions: any = [
-    'happy':
-  ];
 
   constructor() { }
 
   ngOnInit() {
-
+    this.imgEmotion = '../../assets/' + this.emotion + '.png';
   }
 
 }
