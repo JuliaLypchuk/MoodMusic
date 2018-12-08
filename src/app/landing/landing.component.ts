@@ -32,7 +32,7 @@ export class LandingComponent implements OnInit {
     'relaxing',
     'calm'
   ];
-  emotion = 'happy';
+  emotion: string;
 
   lorenIpsum: string;
 
@@ -107,7 +107,7 @@ export class LandingComponent implements OnInit {
 
   setResponseData(res: any) {
     this.responseData = res;
-    this.emotion = this.responseData.mood;
+    this.emotion = this.responseData.mood.toLowerCase().replace(/ .+/,'');
     this.responseData.tracks.forEach((track) => {
       this.getSpotifyLink(track);
     });

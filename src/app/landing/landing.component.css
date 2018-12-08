@@ -94,7 +94,7 @@ main {
   appearance: none;
   width: 70px; /* Set a specific slider handle width */
   height: 70px; /* Slider handle height */
-  background: url("../../assets/Snowman.png") center; /* Green background */
+  background: url("/assets/Snowman.png") center; /* Green background */
   background-size: contain;
   cursor: pointer; /* Cursor on hover */
 }
@@ -102,7 +102,7 @@ main {
 .slider::-moz-range-thumb {
   width: 25px; /* Set a specific slider handle width */
   height: 25px; /* Slider handle height */
-  background: url("../../assets/Snowman.png") center; /* Green background */
+  background: url("/assets/Snowman.png") center; /* Green background */
   cursor: pointer; /* Cursor on hover */
 }
 .search {
@@ -113,6 +113,7 @@ main {
   border: none;
   position:relative;
   box-shadow: 3px 3px 6px rgba(255, 255, 255, 0.5);
+  outline: none;
 }
 .search-text {
   font-size: 20px;
@@ -168,7 +169,7 @@ main {
   83.3%,95.96% {transform:translate3d(0,-25%,0);}
 }
 #divider {
-  background-image: url("../../assets/holidaydiv.png");
+  background-image: url("/assets/holidaydiv.png");
   height: 120px;
   opacity: 0;
   transition: opacity 0.5s;
@@ -186,15 +187,14 @@ main {
 .container-emotion-1, .container-emotion-2 {
   position: absolute;
   top: 76%;
-
   opacity: 0;
   transition: opacity 0.5s;
 }
 .container-emotion-1 {
-  left: 10%;
+  left: 20%;
 }
 .container-emotion-2 {
-  right: 10%;
+  right: 20%;
   transform:  scaleX(-1);
 }
 

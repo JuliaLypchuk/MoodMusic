@@ -1,6 +1,6 @@
 .img-emotion {
-  width: 150px;
-  height: 150px;
+  width: 100px;
+  height: 100px;
   animation-name: animationName;
   animation-duration: 2s;
   animation-iteration-count: infinite;
