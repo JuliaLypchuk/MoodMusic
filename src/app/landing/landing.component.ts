@@ -120,7 +120,7 @@ export class LandingComponent implements OnInit {
     const link: string = track.external_urls.spotify;
     if ( link ) {
       const index = link.indexOf('track');
-      const link1  = link.slice(0,index);
+      const link1  = link.slice(0, index);
       const link2  = link.slice(index, link.length);
       const transformedLink = link1 + 'embed/' + link2;
       this.trustedURLs.push(this.sanitizer.bypassSecurityTrustResourceUrl(transformedLink));
