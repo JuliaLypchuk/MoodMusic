@@ -4,11 +4,13 @@ import { FormsModule }   from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { LandingComponent } from './landing/landing.component';
+import { EmotionComponent } from './emotion/emotion.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LandingComponent
+    LandingComponent,
+    EmotionComponent
   ],
   imports: [
     BrowserModule,

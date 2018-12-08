@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { FormControl } from '@angular/forms';
+import {getBodyNode} from '@angular/animations/browser/src/render/shared';
+import {withIdentifier} from 'codelyzer/util/astQuery';
 
 @Component({
   selector: 'app-landing',
@@ -22,7 +24,12 @@ export class LandingComponent implements OnInit {
   f1 = new FormControl(''); // TODO finish
 
   leftText: string;
-  rightText: string;
+  moods: any = [
+    'happy',
+    'peaceful',
+    'relaxing',
+    'calm'
+  ];
 
 
   constructor(public sanitizer: DomSanitizer) {
@@ -30,8 +37,6 @@ export class LandingComponent implements OnInit {
 
   ngOnInit() {
     this.leftText = 'find your music';
-    this.rightText = 'and be happy';
-
     this.getSpotifyLink();
     this.initForm();
   }
@@ -50,7 +55,9 @@ export class LandingComponent implements OnInit {
   }
 
   onSubmit(data: any) {
-    this.rightText = 'you click on button';
+    document.getElementById('divider').style.opacity = '1';
+   window.scrollTo({ top: document.body.offsetHeight,
+                      behavior: 'smooth' });
     console.log(data);
   }
 }

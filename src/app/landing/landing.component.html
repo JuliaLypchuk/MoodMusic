@@ -1,36 +1,40 @@
-<div class="bg-img">
-  <form>
-    <div class="input-area">
-      <textarea rows="3" class="main-text-input" placeholder="Start typing..."></textarea>
-      <img class="input-img" src="../../assets/Elf.png">
-    </div>
-    <main>
-      <div class="main-text">{{leftText}}</div>
-      <div class="filter-group">
-        <div class="filter" *ngFor="let filter of filters">
-          <label class="filter-label">{{filter}}</label>
-          <input type="range" min="0" max="100" step="1" value="50" class="slider" >
-        </div>
-      </div>
-      <div class="main-text">{{rightText}}</div>
-    </main>
-
-    <button class="search"
-            type="submit"
-            (click)="onSubmit($event)">
-      <span class="search-text">Search</span>
-      <img src="../../assets/Santa.png" class="search-img">
-    </button>
-  </form>
-
-  <div *ngFor="let trustedURL of trustedURLs">
-    <div class="iframe-container">
-      <iframe [src]='trustedURL'
-              width="300" height="80"
-              frameborder="0"
-              allowtransparency="true"
-              allow="encrypted-media">
-      </iframe>
-    </div>
+<form>
+  <div class="input-area">
+    <textarea rows="3" class="main-text-input" placeholder="Start typing..."></textarea>
+    <img class="input-img" src="../../assets/Elf.png">
   </div>
+  <main>
+    <div class="main-text">{{leftText}}</div>
+    <div class="filter-group">
+      <div class="filter" *ngFor="let filter of filters">
+        <label class="filter-label">{{filter}}</label>
+        <input type="range" min="0" max="100" step="1" value="50" class="slider" >
+      </div>
+    </div>
+    <div class="main-text">and be
+      <ul class="content-list">
+        <li class="content-item" *ngFor="let mood of moods">{{mood}}!</li>
+      </ul>
+    </div>
+  </main>
+
+  <button class="search"
+          type="submit"
+          (click)="onSubmit($event)">
+    <span class="search-text">Search</span>
+    <img src="../../assets/Santa.png" class="search-img">
+  </button>
+</form>
+<div id="divider"></div>
+<div class="result-container">
+<div *ngFor="let trustedURL of trustedURLs">
+  <div class="iframe-container">
+    <iframe [src]='trustedURL'
+            width="300" height="80"
+            frameborder="0"
+            allowtransparency="true"
+            allow="encrypted-media">
+    </iframe>
+  </div>
+</div>
 </div>
