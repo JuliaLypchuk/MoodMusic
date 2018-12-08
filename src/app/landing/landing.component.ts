@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import {getBodyNode} from '@angular/animations/browser/src/render/shared';
-import {withIdentifier} from 'codelyzer/util/astQuery';
+import { getBodyNode } from '@angular/animations/browser/src/render/shared';
+import { withIdentifier } from 'codelyzer/util/astQuery';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { MoodParamsModel } from '../models/mood-params.model';
@@ -14,7 +14,7 @@ import { MoodParamsModel } from '../models/mood-params.model';
 })
 export class LandingComponent implements OnInit {
 
-  spotifyLink: string = '';
+  spotifyLink = {};
   trustedURLs: any[] = [];
 
   filters: any;
@@ -57,7 +57,6 @@ export class LandingComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getSpotifyLink();
     this.initForm();
   }
 
@@ -78,14 +77,13 @@ export class LandingComponent implements OnInit {
     this.moodParams.acousticness = form.acousticness ? form.acousticness / 100 : 0;
     this.moodParams.instrumentalness = form.instrumentalness ? form.instrumentalness / 100 : 0;
     this.moodParams.loudness = form.loudness ? form.loudness / 100 : 0;
-
-    console.log('', this.moodParams);
   }
 
   onSubmit(data: any) {
     document.getElementById('divider').style.opacity = '1';
     const emotionEls = document.querySelectorAll('app-emotion');
-    Array.from(emotionEls).forEach(el => el.classList.add('visible'));
+    Array.from(emotionEls)
+         .forEach(el => el.classList.add('visible'));
 
     window.scrollTo({
       top: document.body.offsetHeight,
@@ -100,20 +98,28 @@ export class LandingComponent implements OnInit {
     this.http.post('https://demo-mood-music.herokuapp.com/', this.moodParams)
         .subscribe((res) => {
           if ( res ) {
-            this.responseData = res;
-            console.log(res);
+            this.setResponseData(res);
           }
         }, error => {
           alert(error);
         });
   }
 
-  getSpotifyLink() {
-    // TODO finish
-    this.spotifyLink = 'https://open.spotify.com/embed/album/1DFixLWuPkv3KT3TnV35m3;';
-    this.trustedURLs.push(this.sanitizer.bypassSecurityTrustResourceUrl(this.spotifyLink));
-    this.trustedURLs.push(this.sanitizer.bypassSecurityTrustResourceUrl(this.spotifyLink));
-    this.trustedURLs.push(this.sanitizer.bypassSecurityTrustResourceUrl(this.spotifyLink));
-    this.trustedURLs.push(this.sanitizer.bypassSecurityTrustResourceUrl(this.spotifyLink));
+  setResponseData(res: any) {
+    this.responseData = res;
+    this.emotion = this.responseData.mood;
+    this.responseData.tracks.forEach((track) => {
+      this.getSpotifyLink(track);
+    });
+  }
+
+  getSpotifyLink(track) {
+    const link: string = track.external_urls.spotify;
+    console.log(link);
+    if ( link ) {
+      this.trustedURLs.push(this.sanitizer.bypassSecurityTrustResourceUrl(link));
+    } else {
+      this.trustedURLs.push(this.sanitizer.bypassSecurityTrustResourceUrl('https://open.spotify.com/embed/album/1DFixLWuPkv3KT3TnV35m3;'));
+    }
   }
 }
