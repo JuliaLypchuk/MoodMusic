@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import {getBodyNode} from '@angular/animations/browser/src/render/shared';
+import {withIdentifier} from 'codelyzer/util/astQuery';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
-import { getBodyNode } from '@angular/animations/browser/src/render/shared';
-import { withIdentifier } from 'codelyzer/util/astQuery';
 
 import { MoodParamsModel } from '../models/mood-params.model';
 
@@ -33,6 +32,7 @@ export class LandingComponent implements OnInit {
     'relaxing',
     'calm'
   ];
+  emotion = 'happy';
 
   lorenIpsum: string;
 
@@ -84,6 +84,9 @@ export class LandingComponent implements OnInit {
 
   onSubmit(data: any) {
     document.getElementById('divider').style.opacity = '1';
+    const emotionEls = document.querySelectorAll('app-emotion');
+    Array.from(emotionEls).forEach(el => el.classList.add('visible'));
+
     window.scrollTo({
       top: document.body.offsetHeight,
       behavior: 'smooth'

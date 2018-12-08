@@ -15,6 +15,7 @@ export class EmotionComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log(this.emotion);
     this.imgEmotion = '../../assets/' + this.emotion + '.png';
   }
 }
