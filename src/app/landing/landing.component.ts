@@ -94,6 +94,7 @@ export class LandingComponent implements OnInit {
   }
 
   sendRequest() {
+    this.trustedURLs = [];
     this.spinner = true;
     this.http.post('https://demo-mood-music.herokuapp.com/', this.moodParams)
         .subscribe((res) => {
