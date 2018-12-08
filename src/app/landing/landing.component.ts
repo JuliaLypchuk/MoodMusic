@@ -29,6 +29,7 @@ export class LandingComponent implements OnInit {
     'relaxing',
     'calm'
   ];
+  emotion = 'happy';
 
   constructor(public sanitizer: DomSanitizer) {
 
@@ -68,6 +69,9 @@ export class LandingComponent implements OnInit {
 
   onSubmit(data: any) {
     document.getElementById('divider').style.opacity = '1';
+   const emotionEls = document.querySelectorAll('app-emotion');
+   console.log(emotionEls);
+   Array.from(emotionEls).forEach(el => el.classList.add('visible'));
    window.scrollTo({ top: document.body.offsetHeight,
                       behavior: 'smooth' });
     console.log(data);

@@ -47,7 +47,7 @@ main {
 }
 .main-text {
   width: 30%;
-  padding-left: 30px;
+  padding-left: 2px;
   text-shadow: 3px 2px 5px rgba(255, 255, 255, 0.5);
   display: inline-flex;
   overflow: hidden;
@@ -106,7 +106,7 @@ main {
   cursor: pointer; /* Cursor on hover */
 }
 .search {
-  width: 18%;
+  width: 22%;
   margin: 30px auto;
   height: 60px;
   border-radius: 30px;
@@ -117,7 +117,7 @@ main {
 .search-text {
   font-size: 20px;
   position: absolute;
-  left: 60px;
+  left: 30px;
   top: 20px;
 }
 .search-img {
@@ -126,7 +126,7 @@ main {
   background-position: center;
   position: absolute;
   top: 10px;
-  right: 30px;
+  right: 20px;
 }
 
 .iframe-container {
@@ -140,7 +140,7 @@ main {
 .content-list {
   list-style: none;
   margin-top: 0;
-  padding-left: 10px;
+  padding-left: 5px;
   animation-name: change;
   animation-duration: 10s;
   animation-iteration-count: infinite;
@@ -172,6 +172,7 @@ main {
   height: 120px;
   opacity: 0;
   transition: opacity 0.5s;
+  margin: 50px auto;
 }
 .result-container {
   height: fit-content;
@@ -180,4 +181,41 @@ main {
   justify-content: center;
   max-width: 1000px;
   margin: auto;
+}
+
+.container-emotion-1, .container-emotion-2 {
+  position: absolute;
+  top: 76%;
+
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+.container-emotion-1 {
+  left: 10%;
+}
+.container-emotion-2 {
+  right: 10%;
+  transform:  scaleX(-1);
+}
+
+.visible {
+  opacity: 1;
+}
+
+@media (max-width: 1024px) {
+  main {
+    font-size: 28px;
+  }
+  .filter-group {
+    margin: 0 20px;
+  }
+  .main-text {
+    height: 28px;
+  }
+  .content-list {
+    height: 112px;
+  }
+  .content-item {
+    line-height: 24px;
+  }
 }
